@@ -2,16 +2,12 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-fix-the-white-screen-on-load-issue-audit-app-tsx-and-all-tool-components-for-runtime-errors-that-prevent-the-react-app-from-mounting-ensure-all-cdn-library-references-pdf-js-jspdf-pdf-lib-mammoth-js-are-accessed-safely-with-null-undefined-guards-before-use-and-wrap-the-app-root-in-an-error-boundary-so-uncaught-errors-display-a-fallback-ui-instead-of-a-blank-screen",
-      "featureTitle": "Fix the white screen on load issue. Audit App.tsx and all tool components for runtime errors that prevent the React app from mounting. Ensure all CDN library references (PDF.js, jsPDF, pdf-lib, Mammoth.js) are accessed safely with null/undefined guards before use, and wrap the app root in an error boundary so uncaught errors display a fallback UI instead of a blank screen.",
+      "featureId": "feature-fix-the-application-not-rendering-the-browser-shows-only-a-plain-white-page-with-the-raw-repository-project-name-pdf-image-converter-toolkit-and-a-caffeine-export-description-instead-of-the-converthub-ui-ensure-the-react-app-mounts-correctly-and-the-full-converthub-interface-hero-toolgrid-footer-floatingparticles-is-visible-on-page-load",
+      "featureTitle": "Fix the application not rendering — the browser shows only a plain white page with the raw repository/project name ('pdf-image-converter-toolkit') and a Caffeine export description instead of the ConvertHub UI. Ensure the React app mounts correctly and the full ConvertHub interface (Hero, ToolGrid, Footer, FloatingParticles) is visible on page load.",
       "files": [
+        "frontend/index.html",
         "frontend/src/App.tsx",
-        "frontend/src/components/ErrorBoundary.tsx",
-        "frontend/src/tools/ImageToPdf.tsx",
-        "frontend/src/tools/MergePdfs.tsx",
-        "frontend/src/tools/PdfToImage.tsx",
-        "frontend/src/tools/PdfToWord.tsx",
-        "frontend/src/tools/WordToPdf.tsx"
+        "frontend/src/components/FloatingParticles.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -21,13 +17,13 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-15"
+        "REQ-17"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-audit-index-html-to-ensure-all-cdn-script-tags-load-in-the-correct-order-and-with-appropriate-attributes-e-g-defer-or-async-where-suitable-verify-that-the-pdf-js-workersrc-global-is-set-correctly-after-the-pdf-js-cdn-script-loads-and-that-all-cdn-urls-are-valid-and-up-to-date",
-      "featureTitle": "Audit index.html to ensure all CDN script tags load in the correct order and with appropriate attributes (e.g., defer or async where suitable). Verify that the PDF.js workerSrc global is set correctly after the PDF.js CDN script loads, and that all CDN URLs are valid and up-to-date.",
+      "featureId": "feature-audit-index-html-to-confirm-the-react-bundle-script-tag-is-present-points-to-the-correct-entry-file-e-g-src-main-tsx-or-the-built-output-and-that-the-root-div-with-id-root-exists-ensure-cdn-scripts-for-pdf-js-jspdf-pdf-lib-and-mammoth-js-are-loaded-synchronously-before-the-react-bundle-so-all-globals-are-available-at-runtime",
+      "featureTitle": "Audit index.html to confirm the React bundle script tag is present, points to the correct entry file (e.g. /src/main.tsx or the built output), and that the root div with id='root' exists. Ensure CDN scripts for PDF.js, jsPDF, pdf-lib, and Mammoth.js are loaded synchronously before the React bundle so all globals are available at runtime.",
       "files": [
         "frontend/index.html"
       ],
@@ -39,7 +35,7 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-16"
+        "REQ-18"
       ],
       "confidence": "high"
     }

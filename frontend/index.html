@@ -24,9 +24,24 @@
 
     <!-- Mammoth.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+
+    <style>
+      #root-loading {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #0a0618 0%, #0d0a24 50%, #080514 100%);
+        color: rgba(200, 180, 255, 0.8);
+        font-family: system-ui, sans-serif;
+        font-size: 1rem;
+      }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div id="root-loading">Loading ConvertHub…</div>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

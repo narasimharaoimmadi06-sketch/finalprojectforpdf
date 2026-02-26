@@ -1,14 +1,12 @@
 # Specification
 
 ## Summary
-**Goal:** Fix the white screen on load issue in the ConvertHub app by resolving runtime errors that prevent React from mounting.
+**Goal:** Fix the blank white screen issue where the browser displays raw project metadata ("pdf-image-converter-toolkit" and Caffeine export description) instead of the ConvertHub React UI.
 
 **Planned changes:**
-- Audit `App.tsx` and all tool components for runtime errors that block mounting
-- Add null/undefined guards for CDN library globals (`pdfjsLib`, `jspdf`, `PDFLib`, `mammoth`) before use in tool components
-- Wrap the app root in an error boundary to display a fallback UI on uncaught errors
-- Audit `index.html` to ensure CDN script tags load in the correct order with appropriate attributes
-- Verify PDF.js `workerSrc` is set to a matching CDN version after the PDF.js script loads
-- Confirm all CDN URLs (PDF.js, jsPDF, pdf-lib, Mammoth.js) are valid and error-free
+- Audit and fix `index.html` to ensure the `<div id="root"></div>` element is present and the React bundle script tag is correctly referenced
+- Ensure all CDN scripts (PDF.js, jsPDF, pdf-lib, Mammoth.js) are loaded before the React bundle, with PDF.js workerSrc set inline after its CDN script
+- Verify `main.tsx` correctly calls `ReactDOM.createRoot` on the root element and renders the App component
+- Add a visible fallback error message if the root element is not found in the DOM
 
-**User-visible outcome:** The app loads fully on first visit — showing the hero, all 8 tool cards, and the footer — with no white screen and no console errors.
+**User-visible outcome:** Opening the app URL displays the full ConvertHub dark glassmorphism interface with the Hero section, 8 tool cards grid, and Footer — no more blank white page or raw project name text.

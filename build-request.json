@@ -1,58 +1,71 @@
 {
   "kind": "build_request",
-  "title": "Fix white screen on load",
+  "title": "Fix white screen / blank app rendering issue",
   "projectName": "ConvertHub",
   "priority": "high",
   "requirements": [
     {
-      "id": "REQ-15",
-      "text": "Fix the white screen on load issue. Audit App.tsx and all tool components for runtime errors that prevent the React app from mounting. Ensure all CDN library references (PDF.js, jsPDF, pdf-lib, Mammoth.js) are accessed safely with null/undefined guards before use, and wrap the app root in an error boundary so uncaught errors display a fallback UI instead of a blank screen.",
+      "id": "REQ-17",
+      "text": "Fix the application not rendering — the browser shows only a plain white page with the raw repository/project name ('pdf-image-converter-toolkit') and a Caffeine export description instead of the ConvertHub UI. Ensure the React app mounts correctly and the full ConvertHub interface (Hero, ToolGrid, Footer, FloatingParticles) is visible on page load.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-8"
+          "msg-latest"
         ],
         "quotes": [
-          "showing white screen"
+          "it showing like this"
         ]
       },
       "acceptanceCriteria": [
-        "The app renders its full UI (hero, tool grid, footer) on initial load with no white screen",
-        "No uncaught JavaScript errors appear in the browser console on load",
-        "CDN library globals (pdfjsLib, jspdf, PDFLib, mammoth) are checked for availability before use in tool components",
-        "If a runtime error does occur, an error boundary displays a readable fallback message instead of a blank screen",
-        "All 8 tool cards are visible and clickable after load"
+        "Opening the app URL shows the ConvertHub dark glassmorphism UI, not a plain white page",
+        "The Hero section with the ConvertHub logo and tagline is visible",
+        "The 8 tool cards are displayed in the responsive grid",
+        "No raw repository/project name text is shown to the user",
+        "Browser console shows no fatal JavaScript errors on load",
+        "The React root element is mounted and renders the full App component tree"
       ]
     },
     {
-      "id": "REQ-16",
-      "text": "Audit index.html to ensure all CDN script tags load in the correct order and with appropriate attributes (e.g., defer or async where suitable). Verify that the PDF.js workerSrc global is set correctly after the PDF.js CDN script loads, and that all CDN URLs are valid and up-to-date.",
+      "id": "REQ-18",
+      "text": "Audit index.html to confirm the React bundle script tag is present, points to the correct entry file (e.g. /src/main.tsx or the built output), and that the root div with id='root' exists. Ensure CDN scripts for PDF.js, jsPDF, pdf-lib, and Mammoth.js are loaded synchronously before the React bundle so all globals are available at runtime.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-8"
-        ],
-        "quotes": [
-          "showing white screen"
+          "msg-latest"
         ]
       },
       "acceptanceCriteria": [
-        "All CDN scripts (PDF.js, jsPDF, pdf-lib, Mammoth.js) load without 404 or network errors",
-        "PDF.js workerSrc is set to a matching CDN URL for the same version as the main PDF.js script",
-        "The React bundle loads and executes after all CDN scripts are available",
-        "No 'is not defined' or 'Cannot read properties of undefined' errors related to CDN globals appear in the console"
+        "index.html contains a <div id='root'></div> element",
+        "The React entry script tag references the correct module path",
+        "All CDN library script tags appear before the React bundle script tag",
+        "PDF.js workerSrc is set in an inline script after the PDF.js CDN script loads",
+        "Page loads without 404 errors for any script resources"
+      ]
+    },
+    {
+      "id": "REQ-19",
+      "text": "Verify that main.tsx correctly calls ReactDOM.createRoot on the element with id='root' and renders the App component. Add a console error and visible fallback message if the root element is not found in the DOM.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-latest"
+        ]
+      },
+      "acceptanceCriteria": [
+        "main.tsx finds the root element and mounts the React app without throwing",
+        "If root element is missing, a visible error message is shown instead of a blank page",
+        "App.tsx renders without uncaught exceptions on initial mount"
       ]
     }
   ],
   "constraints": [
     "Do not modify files under frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, or frontend/src/components/ui",
-    "Do not remove or replace any existing conversion tool logic; only add safety guards and fix initialization errors"
+    "All conversion processing must remain client-side — no backend changes required"
   ],
   "nonGoals": [
-    "Adding new conversion features",
+    "Adding new conversion tools or features",
     "Changing the visual design or theme",
-    "Adding user authentication or login",
-    "Migrating away from CDN-based libraries to npm packages"
+    "Modifying backend/main.mo"
   ],
   "imageRequirements": {
     "required": [],

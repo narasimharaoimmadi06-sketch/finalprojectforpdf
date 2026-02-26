@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 5,
+  "projectStateVersion": 7,
   "summary": "ConvertHub - an all-in-one PDF & Image conversion web app with 8 tools (PDF↔Image, Image↔PDF, Image↔Word, PDF↔Word, Word↔PDF, Image Compressor, Image Resizer, Merge PDFs). Dark glassmorphism UI with animated gradients, drag & drop uploads, all processing client-side using PDF.js, jsPDF, and Canvas API.",
   "architectural_notes": [
     "Single-file or multi-file pure HTML/CSS/JS implementation, no server required",
@@ -140,6 +140,22 @@
         "REQ-16"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-fix-the-application-not-rendering-the-browser-shows-only-a-plain-white-page-with-the-raw-repository-project-name-pdf-image-converter-toolkit-and-a-caffeine-export-description-instead-of-the-converthub-ui-ensure-the-react-app-mounts-correctly-and-the-full-converthub-interface-hero-toolgrid-footer-floatingparticles-is-visible-on-page-load",
+      "title": "Fix the application not rendering — the browser shows only a plain white page with the raw repository/project name ('pdf-image-converter-toolkit') and a Caffeine export description instead of the ConvertHub UI. Ensure the React app mounts correctly and the full ConvertHub interface (Hero, ToolGrid, Footer, FloatingParticles) is visible on page load.",
+      "reqIds": [
+        "REQ-17"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-audit-index-html-to-confirm-the-react-bundle-script-tag-is-present-points-to-the-correct-entry-file-e-g-src-main-tsx-or-the-built-output-and-that-the-root-div-with-id-root-exists-ensure-cdn-scripts-for-pdf-js-jspdf-pdf-lib-and-mammoth-js-are-loaded-synchronously-before-the-react-bundle-so-all-globals-are-available-at-runtime",
+      "title": "Audit index.html to confirm the React bundle script tag is present, points to the correct entry file (e.g. /src/main.tsx or the built output), and that the root div with id='root' exists. Ensure CDN scripts for PDF.js, jsPDF, pdf-lib, and Mammoth.js are loaded synchronously before the React bundle so all globals are available at runtime.",
+      "reqIds": [
+        "REQ-18"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -189,6 +205,14 @@
       "id": "AR-8",
       "summary": "Merge PDFs tool",
       "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-11",
+      "summary": "Verify that main.tsx correctly calls ReactDOM.createRoot on the element with id='root' and renders the App component. Add a console error and visible fallback message if the root element is not found in the DOM.",
+      "reqIds": [
+        "REQ-19"
+      ],
       "status": "pending"
     }
   ],

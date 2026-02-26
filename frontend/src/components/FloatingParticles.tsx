@@ -18,11 +18,18 @@ export default function FloatingParticles() {
   const particlesRef = useRef<Particle[]>([]);
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
+    let canvas: HTMLCanvasElement | null = null;
+    let ctx: CanvasRenderingContext2D | null = null;
 
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
+    try {
+      canvas = canvasRef.current;
+      if (!canvas) return;
+
+      ctx = canvas.getContext('2d');
+      if (!ctx) return;
+    } catch {
+      return;
+    }
 
     const colors = [
       'rgba(139, 92, 246,',   // purple
@@ -33,15 +40,17 @@ export default function FloatingParticles() {
     ];
 
     const resize = () => {
+      if (!canvas) return;
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     };
 
     const createParticles = () => {
+      if (!canvas) return;
       const count = Math.floor((window.innerWidth * window.innerHeight) / 18000);
       particlesRef.current = Array.from({ length: Math.min(count, 60) }, () => ({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
+        x: Math.random() * (canvas?.width ?? window.innerWidth),
+        y: Math.random() * (canvas?.height ?? window.innerHeight),
         size: Math.random() * 3 + 0.5,
         speedX: (Math.random() - 0.5) * 0.4,
         speedY: (Math.random() - 0.5) * 0.4,
@@ -53,47 +62,62 @@ export default function FloatingParticles() {
     };
 
     const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      try {
+        if (!ctx || !canvas) return;
 
-      particlesRef.current.forEach((p) => {
-        p.x += p.speedX;
-        p.y += p.speedY;
-        p.pulse += p.pulseSpeed;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        if (p.x < -10) p.x = canvas.width + 10;
-        if (p.x > canvas.width + 10) p.x = -10;
-        if (p.y < -10) p.y = canvas.height + 10;
-        if (p.y > canvas.height + 10) p.y = -10;
+        particlesRef.current.forEach((p) => {
+          if (!ctx || !canvas) return;
+          p.x += p.speedX;
+          p.y += p.speedY;
+          p.pulse += p.pulseSpeed;
 
-        const currentOpacity = p.opacity * (0.7 + 0.3 * Math.sin(p.pulse));
+          if (p.x < -10) p.x = canvas.width + 10;
+          if (p.x > canvas.width + 10) p.x = -10;
+          if (p.y < -10) p.y = canvas.height + 10;
+          if (p.y > canvas.height + 10) p.y = -10;
 
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `${p.color}${currentOpacity})`;
-        ctx.fill();
+          const currentOpacity = p.opacity * (0.7 + 0.3 * Math.sin(p.pulse));
 
-        // Glow effect for larger particles
-        if (p.size > 2) {
-          const gradient = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size * 4);
-          gradient.addColorStop(0, `${p.color}${currentOpacity * 0.4})`);
-          gradient.addColorStop(1, `${p.color}0)`);
           ctx.beginPath();
-          ctx.arc(p.x, p.y, p.size * 4, 0, Math.PI * 2);
-          ctx.fillStyle = gradient;
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fillStyle = `${p.color}${currentOpacity})`;
           ctx.fill();
-        }
-      });
 
-      animationRef.current = requestAnimationFrame(animate);
+          // Glow effect for larger particles
+          if (p.size > 2) {
+            const gradient = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size * 4);
+            gradient.addColorStop(0, `${p.color}${currentOpacity * 0.4})`);
+            gradient.addColorStop(1, `${p.color}0)`);
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.size * 4, 0, Math.PI * 2);
+            ctx.fillStyle = gradient;
+            ctx.fill();
+          }
+        });
+
+        animationRef.current = requestAnimationFrame(animate);
+      } catch {
+        // Silently stop animation on error to avoid crashing the app
+      }
     };
 
-    resize();
-    createParticles();
-    animate();
-
-    const handleResize = () => {
+    try {
       resize();
       createParticles();
+      animate();
+    } catch {
+      // Silently fail — particles are decorative only
+    }
+
+    const handleResize = () => {
+      try {
+        resize();
+        createParticles();
+      } catch {
+        // ignore
+      }
     };
 
     window.addEventListener('resize', handleResize);

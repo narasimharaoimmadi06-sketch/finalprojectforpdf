@@ -73,24 +73,40 @@ export default function App() {
 
   return (
     <ErrorBoundary>
-      <div className="relative min-h-screen overflow-x-hidden" style={{ background: 'linear-gradient(135deg, #0a0618 0%, #0d0a24 50%, #080514 100%)' }}>
-        <FloatingParticles />
+      <div
+        className="relative min-h-screen overflow-x-hidden"
+        style={{ background: 'linear-gradient(135deg, #0a0618 0%, #0d0a24 50%, #080514 100%)' }}
+      >
+        <ErrorBoundary>
+          <FloatingParticles />
+        </ErrorBoundary>
+
         <div className="relative z-10 flex flex-col min-h-screen">
-          <Hero />
+          <ErrorBoundary>
+            <Hero />
+          </ErrorBoundary>
+
           <main className="flex-1">
-            <ToolGrid onOpenTool={handleOpenTool} />
+            <ErrorBoundary>
+              <ToolGrid onOpenTool={handleOpenTool} />
+            </ErrorBoundary>
           </main>
-          <Footer />
+
+          <ErrorBoundary>
+            <Footer />
+          </ErrorBoundary>
         </div>
 
         {activeTool && (
-          <ConversionModal
-            open={!!activeTool}
-            onClose={handleCloseTool}
-            title={toolTitles[activeTool]}
-          >
-            {renderTool(activeTool, handleCloseTool)}
-          </ConversionModal>
+          <ErrorBoundary>
+            <ConversionModal
+              open={!!activeTool}
+              onClose={handleCloseTool}
+              title={toolTitles[activeTool]}
+            >
+              {renderTool(activeTool, handleCloseTool)}
+            </ConversionModal>
+          </ErrorBoundary>
         )}
 
         <Toaster

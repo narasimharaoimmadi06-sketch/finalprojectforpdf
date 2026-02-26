@@ -2,94 +2,102 @@ import React, { Component, ErrorInfo, ReactNode } from 'react';
 
 interface Props {
   children: ReactNode;
+  fallback?: ReactNode;
 }
 
 interface State {
   hasError: boolean;
   error: Error | null;
-  errorInfo: ErrorInfo | null;
 }
 
-class ErrorBoundary extends Component<Props, State> {
+export default class ErrorBoundary extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
-    this.state = { hasError: false, error: null, errorInfo: null };
+    this.state = { hasError: false, error: null };
   }
 
-  static getDerivedStateFromError(error: Error): Partial<State> {
+  static getDerivedStateFromError(error: Error): State {
     return { hasError: true, error };
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    this.setState({ errorInfo });
     console.error('ErrorBoundary caught an error:', error, errorInfo);
   }
 
-  handleReload = () => {
-    window.location.reload();
-  };
-
   handleReset = () => {
-    this.setState({ hasError: false, error: null, errorInfo: null });
+    this.setState({ hasError: false, error: null });
   };
 
   render() {
     if (this.state.hasError) {
+      // If a custom fallback is provided, use it
+      if (this.props.fallback) {
+        return <>{this.props.fallback}</>;
+      }
+
+      // Default fallback UI
       return (
-        <div className="min-h-screen bg-background flex items-center justify-center p-6">
-          <div className="max-w-lg w-full bg-card border border-border rounded-2xl p-8 shadow-card text-center">
-            <div className="w-16 h-16 bg-destructive/10 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg
-                className="w-8 h-8 text-destructive"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"
-                />
-              </svg>
-            </div>
-
-            <h2 className="text-2xl font-display font-bold text-foreground mb-2">
-              Something went wrong
-            </h2>
-            <p className="text-muted-foreground mb-6">
-              An unexpected error occurred. This is usually a temporary issue.
-            </p>
-
-            {this.state.error && (
-              <div className="bg-muted rounded-lg p-4 mb-6 text-left">
-                <p className="text-sm font-mono text-destructive break-all">
-                  {this.state.error.message}
-                </p>
-              </div>
-            )}
-
-            <div className="flex gap-3 justify-center">
-              <button
-                onClick={this.handleReset}
-                className="px-5 py-2.5 rounded-lg border border-border text-foreground hover:bg-muted transition-colors text-sm font-medium"
-              >
-                Try Again
-              </button>
-              <button
-                onClick={this.handleReload}
-                className="px-5 py-2.5 rounded-lg bg-primary text-primary-foreground hover:opacity-90 transition-opacity text-sm font-medium"
-              >
-                Reload Page
-              </button>
-            </div>
+        <div
+          style={{
+            padding: '2rem',
+            margin: '1rem',
+            borderRadius: '12px',
+            background: 'rgba(220, 38, 38, 0.1)',
+            border: '1px solid rgba(220, 38, 38, 0.3)',
+            color: 'rgba(255, 200, 200, 0.9)',
+            fontFamily: 'system-ui, sans-serif',
+          }}
+        >
+          <h2 style={{ marginBottom: '0.5rem', fontSize: '1.1rem', fontWeight: 600 }}>
+            Something went wrong
+          </h2>
+          {this.state.error && (
+            <pre
+              style={{
+                fontSize: '0.75rem',
+                opacity: 0.7,
+                whiteSpace: 'pre-wrap',
+                wordBreak: 'break-word',
+                marginBottom: '1rem',
+              }}
+            >
+              {this.state.error.message}
+            </pre>
+          )}
+          <div style={{ display: 'flex', gap: '0.75rem' }}>
+            <button
+              onClick={this.handleReset}
+              style={{
+                padding: '0.4rem 1rem',
+                borderRadius: '6px',
+                background: 'rgba(139, 92, 246, 0.3)',
+                border: '1px solid rgba(139, 92, 246, 0.5)',
+                color: 'white',
+                cursor: 'pointer',
+                fontSize: '0.85rem',
+              }}
+            >
+              Try Again
+            </button>
+            <button
+              onClick={() => window.location.reload()}
+              style={{
+                padding: '0.4rem 1rem',
+                borderRadius: '6px',
+                background: 'rgba(255, 255, 255, 0.05)',
+                border: '1px solid rgba(255, 255, 255, 0.15)',
+                color: 'rgba(200, 180, 255, 0.8)',
+                cursor: 'pointer',
+                fontSize: '0.85rem',
+              }}
+            >
+              Reload Page
+            </button>
           </div>
         </div>
       );
     }
 
-    return this.props.children;
+    return <>{this.props.children}</>;
   }
 }
-
-export default ErrorBoundary;
