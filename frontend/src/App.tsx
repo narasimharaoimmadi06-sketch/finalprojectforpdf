@@ -1,40 +1,64 @@
-import { useState } from 'react';
-import { Toaster } from '@/components/ui/sonner';
-import FloatingParticles from './components/FloatingParticles';
+import React, { useState } from 'react';
+import ErrorBoundary from './components/ErrorBoundary';
 import Hero from './components/Hero';
 import ToolGrid from './components/ToolGrid';
-import ConversionModal from './components/ConversionModal';
 import Footer from './components/Footer';
+import ConversionModal from './components/ConversionModal';
+import FloatingParticles from './components/FloatingParticles';
 import PdfToImage from './tools/PdfToImage';
 import ImageToPdf from './tools/ImageToPdf';
-import ImageToWord from './tools/ImageToWord';
+import MergePdfs from './tools/MergePdfs';
 import PdfToWord from './tools/PdfToWord';
 import WordToPdf from './tools/WordToPdf';
 import ImageCompressor from './tools/ImageCompressor';
 import ImageResizer from './tools/ImageResizer';
-import MergePdfs from './tools/MergePdfs';
+import ImageToWord from './tools/ImageToWord';
+import { Toaster } from '@/components/ui/sonner';
 
 export type ToolId =
   | 'pdf-to-image'
   | 'image-to-pdf'
-  | 'image-to-word'
+  | 'merge-pdfs'
   | 'pdf-to-word'
   | 'word-to-pdf'
   | 'image-compressor'
   | 'image-resizer'
-  | 'merge-pdfs'
+  | 'image-to-word'
   | null;
 
 const toolTitles: Record<NonNullable<ToolId>, string> = {
   'pdf-to-image': 'PDF to Image',
   'image-to-pdf': 'Image to PDF',
-  'image-to-word': 'Image to Word',
+  'merge-pdfs': 'Merge PDFs',
   'pdf-to-word': 'PDF to Word',
   'word-to-pdf': 'Word to PDF',
   'image-compressor': 'Image Compressor',
   'image-resizer': 'Image Resizer',
-  'merge-pdfs': 'Merge PDFs',
+  'image-to-word': 'Image to Word',
 };
+
+function renderTool(toolId: NonNullable<ToolId>, onClose: () => void) {
+  switch (toolId) {
+    case 'pdf-to-image':
+      return <PdfToImage onClose={onClose} />;
+    case 'image-to-pdf':
+      return <ImageToPdf onClose={onClose} />;
+    case 'merge-pdfs':
+      return <MergePdfs onClose={onClose} />;
+    case 'pdf-to-word':
+      return <PdfToWord onClose={onClose} />;
+    case 'word-to-pdf':
+      return <WordToPdf onClose={onClose} />;
+    case 'image-compressor':
+      return <ImageCompressor onClose={onClose} />;
+    case 'image-resizer':
+      return <ImageResizer onClose={onClose} />;
+    case 'image-to-word':
+      return <ImageToWord onClose={onClose} />;
+    default:
+      return null;
+  }
+}
 
 export default function App() {
   const [activeTool, setActiveTool] = useState<ToolId>(null);
@@ -47,61 +71,40 @@ export default function App() {
     setActiveTool(null);
   };
 
-  const renderToolContent = () => {
-    switch (activeTool) {
-      case 'pdf-to-image':
-        return <PdfToImage onClose={handleCloseTool} />;
-      case 'image-to-pdf':
-        return <ImageToPdf onClose={handleCloseTool} />;
-      case 'image-to-word':
-        return <ImageToWord onClose={handleCloseTool} />;
-      case 'pdf-to-word':
-        return <PdfToWord onClose={handleCloseTool} />;
-      case 'word-to-pdf':
-        return <WordToPdf onClose={handleCloseTool} />;
-      case 'image-compressor':
-        return <ImageCompressor onClose={handleCloseTool} />;
-      case 'image-resizer':
-        return <ImageResizer onClose={handleCloseTool} />;
-      case 'merge-pdfs':
-        return <MergePdfs onClose={handleCloseTool} />;
-      default:
-        return null;
-    }
-  };
-
   return (
-    <div className="relative min-h-screen gradient-bg overflow-x-hidden">
-      <FloatingParticles />
-      <div className="relative z-10">
-        <Hero />
-        <main>
-          <ToolGrid onOpenTool={handleOpenTool} />
-        </main>
-        <Footer />
+    <ErrorBoundary>
+      <div className="relative min-h-screen overflow-x-hidden" style={{ background: 'linear-gradient(135deg, #0a0618 0%, #0d0a24 50%, #080514 100%)' }}>
+        <FloatingParticles />
+        <div className="relative z-10 flex flex-col min-h-screen">
+          <Hero />
+          <main className="flex-1">
+            <ToolGrid onOpenTool={handleOpenTool} />
+          </main>
+          <Footer />
+        </div>
+
+        {activeTool && (
+          <ConversionModal
+            open={!!activeTool}
+            onClose={handleCloseTool}
+            title={toolTitles[activeTool]}
+          >
+            {renderTool(activeTool, handleCloseTool)}
+          </ConversionModal>
+        )}
+
+        <Toaster
+          position="bottom-right"
+          toastOptions={{
+            style: {
+              background: 'rgba(20, 15, 40, 0.95)',
+              border: '1px solid rgba(139, 92, 246, 0.3)',
+              color: 'white',
+              backdropFilter: 'blur(16px)',
+            },
+          }}
+        />
       </div>
-
-      {activeTool && (
-        <ConversionModal
-          open={!!activeTool}
-          onClose={handleCloseTool}
-          title={toolTitles[activeTool]}
-        >
-          {renderToolContent()}
-        </ConversionModal>
-      )}
-
-      <Toaster
-        position="bottom-right"
-        toastOptions={{
-          style: {
-            background: 'rgba(20, 15, 40, 0.95)',
-            border: '1px solid rgba(139, 92, 246, 0.3)',
-            color: 'white',
-            backdropFilter: 'blur(16px)',
-          },
-        }}
-      />
-    </div>
+    </ErrorBoundary>
   );
 }
