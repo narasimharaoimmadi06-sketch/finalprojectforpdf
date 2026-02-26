@@ -1,0 +1,282 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-create-a-hero-section-at-the-top-of-the-app-with-the-converthub-logo-name-a-tagline-all-in-one-file-conversion-toolkit-or-similar-and-a-subtle-animated-logo-mark-use-google-fonts-inter-or-poppins-for-all-typography",
+      "featureTitle": "Create a hero section at the top of the app with the 'ConvertHub' logo/name, a tagline ('All-in-One File Conversion Toolkit' or similar), and a subtle animated logo mark. Use Google Fonts (Inter or Poppins) for all typography.",
+      "files": [
+        "frontend/index.html",
+        "frontend/src/App.tsx",
+        "frontend/src/components/Hero.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-a-dark-glassmorphism-visual-theme-with-an-animated-purple-blue-gradient-background-the-background-gradient-should-slowly-and-continuously-shift-colors-all-cards-and-modals-should-use-glass-effect-styling-backdrop-blur-semi-transparent-backgrounds-subtle-borders-apply-neon-glow-effects-on-active-focused-elements-include-floating-particles-or-a-subtle-ambient-background-animation",
+      "featureTitle": "Implement a dark glassmorphism visual theme with an animated purple/blue gradient background. The background gradient should slowly and continuously shift colors. All cards and modals should use glass-effect styling (backdrop blur, semi-transparent backgrounds, subtle borders). Apply neon glow effects on active/focused elements. Include floating particles or a subtle ambient background animation.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/FloatingParticles.tsx",
+        "frontend/src/index.css",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-a-responsive-tool-grid-layout-displaying-all-8-conversion-tools-as-cards-pdf-to-image-image-to-pdf-image-to-word-pdf-to-word-word-to-pdf-image-compressor-image-resizer-and-merge-pdfs-the-grid-should-be-4-columns-on-desktop-2-on-tablet-and-1-on-mobile-each-card-must-have-a-unique-colorful-icon-with-a-gradient-accent-a-tool-name-and-a-short-description-cards-must-have-smooth-hover-animations-scale-glow-lift-effect",
+      "featureTitle": "Implement a responsive tool grid layout displaying all 8 conversion tools as cards: PDF to Image, Image to PDF, Image to Word, PDF to Word, Word to PDF, Image Compressor, Image Resizer, and Merge PDFs. The grid should be 4 columns on desktop, 2 on tablet, and 1 on mobile. Each card must have a unique colorful icon with a gradient accent, a tool name, and a short description. Cards must have smooth hover animations (scale, glow, lift effect).",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/ToolCard.tsx",
+        "frontend/src/components/ToolGrid.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-each-tool-card-should-open-its-conversion-interface-in-a-modal-or-dedicated-expanded-section-each-tool-interface-must-include-a-drag-and-drop-file-upload-zone-with-animated-dashed-glowing-border-a-file-input-fallback-button-relevant-conversion-options-e-g-output-format-selector-for-pdf-to-image-a-convert-action-button-a-gradient-filled-progress-bar-shown-during-processing-and-a-download-button-that-triggers-file-download-after-conversion-completes-show-toast-notifications-for-success-and-error-states",
+      "featureTitle": "Each tool card should open its conversion interface in a modal or dedicated expanded section. Each tool interface must include: a drag-and-drop file upload zone with animated dashed/glowing border, a file input fallback button, relevant conversion options (e.g., output format selector for PDF to Image), a 'Convert' action button, a gradient-filled progress bar shown during processing, and a download button that triggers file download after conversion completes. Show toast notifications for success and error states.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/ConversionModal.tsx",
+        "frontend/src/components/ConversionProgress.tsx",
+        "frontend/src/components/DownloadButton.tsx",
+        "frontend/src/components/FileUploadZone.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-the-pdf-to-image-conversion-tool-client-side-use-pdf-js-from-cdn-to-render-each-page-of-an-uploaded-pdf-and-export-pages-as-jpg-or-png-images-allow-the-user-to-select-output-format-jpg-or-png-provide-a-download-for-all-converted-images-individually-or-as-a-zip",
+      "featureTitle": "Implement the PDF to Image conversion tool (client-side). Use PDF.js from CDN to render each page of an uploaded PDF and export pages as JPG or PNG images. Allow the user to select output format (JPG or PNG). Provide a download for all converted images (individually or as a zip).",
+      "files": [
+        "frontend/index.html",
+        "frontend/src/App.tsx",
+        "frontend/src/tools/PdfToImage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-the-image-to-pdf-conversion-tool-client-side-use-jspdf-from-cdn-to-combine-one-or-more-uploaded-jpg-png-images-into-a-single-pdf-document-allow-uploading-multiple-images-and-define-their-order-before-conversion",
+      "featureTitle": "Implement the Image to PDF conversion tool (client-side). Use jsPDF from CDN to combine one or more uploaded JPG/PNG images into a single PDF document. Allow uploading multiple images and define their order before conversion.",
+      "files": [
+        "frontend/index.html",
+        "frontend/src/App.tsx",
+        "frontend/src/tools/ImageToPdf.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-the-image-to-word-docx-conversion-tool-client-side-embed-the-uploaded-image-s-into-a-docx-file-using-a-client-side-library-e-g-docx-js-or-similar-provide-the-docx-file-for-download",
+      "featureTitle": "Implement the Image to Word (DOCX) conversion tool (client-side). Embed the uploaded image(s) into a DOCX file using a client-side library (e.g., docx.js or similar). Provide the DOCX file for download.",
+      "files": [
+        "frontend/index.html",
+        "frontend/src/App.tsx",
+        "frontend/src/tools/ImageToWord.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-7"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-the-pdf-to-word-docx-conversion-tool-client-side-use-pdf-js-to-extract-text-content-from-each-page-of-the-uploaded-pdf-then-generate-a-docx-file-with-the-extracted-text-using-a-client-side-docx-library-provide-the-docx-for-download",
+      "featureTitle": "Implement the PDF to Word (DOCX) conversion tool (client-side). Use PDF.js to extract text content from each page of the uploaded PDF, then generate a DOCX file with the extracted text using a client-side DOCX library. Provide the DOCX for download.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/tools/PdfToWord.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-8"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-the-word-to-pdf-conversion-tool-client-side-use-mammoth-js-from-cdn-to-read-the-uploaded-docx-file-and-extract-its-html-content-then-use-jspdf-to-render-that-content-into-a-downloadable-pdf",
+      "featureTitle": "Implement the Word to PDF conversion tool (client-side). Use Mammoth.js from CDN to read the uploaded DOCX file and extract its HTML content, then use jsPDF to render that content into a downloadable PDF.",
+      "files": [
+        "frontend/index.html",
+        "frontend/src/App.tsx",
+        "frontend/src/tools/WordToPdf.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-9"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-the-image-compressor-tool-client-side-use-the-canvas-api-to-re-encode-an-uploaded-jpg-or-png-at-a-user-selected-quality-level-e-g-a-slider-from-10-100-display-the-original-file-size-and-the-compressed-file-size-before-download-provide-the-compressed-image-for-download",
+      "featureTitle": "Implement the Image Compressor tool (client-side). Use the Canvas API to re-encode an uploaded JPG or PNG at a user-selected quality level (e.g., a slider from 10–100%). Display the original file size and the compressed file size before download. Provide the compressed image for download.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/tools/ImageCompressor.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-10"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-the-image-resizer-tool-client-side-use-the-canvas-api-to-resize-an-uploaded-jpg-or-png-to-user-specified-width-and-height-dimensions-provide-an-option-to-maintain-aspect-ratio-display-a-preview-of-the-resized-image-and-allow-download",
+      "featureTitle": "Implement the Image Resizer tool (client-side). Use the Canvas API to resize an uploaded JPG or PNG to user-specified width and height dimensions. Provide an option to maintain aspect ratio. Display a preview of the resized image and allow download.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/tools/ImageResizer.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-11"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-the-merge-pdfs-tool-client-side-allow-uploading-multiple-pdf-files-and-reordering-them-drag-to-reorder-or-up-down-buttons-use-pdf-js-to-read-pages-from-each-pdf-and-jspdf-or-pdf-lib-from-cdn-to-combine-all-pages-into-one-merged-pdf-document-available-for-download",
+      "featureTitle": "Implement the Merge PDFs tool (client-side). Allow uploading multiple PDF files and reordering them (drag-to-reorder or up/down buttons). Use PDF.js to read pages from each PDF and jsPDF or pdf-lib (from CDN) to combine all pages into one merged PDF document available for download.",
+      "files": [
+        "frontend/index.html",
+        "frontend/src/App.tsx",
+        "frontend/src/tools/MergePdfs.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-12"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-footer-section-below-the-tool-grid-with-the-app-name-converthub-a-brief-description-and-a-note-that-all-conversions-are-processed-locally-in-the-browser-privacy-first-messaging",
+      "featureTitle": "Add a footer section below the tool grid with the app name 'ConvertHub', a brief description, and a note that all conversions are processed locally in the browser (privacy-first messaging).",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/Footer.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-13"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-generate-a-converthub-wordmark-logo-image-and-a-hero-background-image-for-the-landing-page",
+      "featureTitle": "Generate a ConvertHub wordmark/logo image and a hero background image for the landing page.",
+      "files": [
+        "frontend/src/components/Hero.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-14"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

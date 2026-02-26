@@ -1,0 +1,338 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-26T06:53:30.849Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 14,
+    "implemented": 14,
+    "items": [
+      {
+        "id": "REQ-1",
+        "summary": "Create a hero section at the top of the app with the 'ConvertHub' logo/name, a tagline ('All-in-One File Conversion Toolkit' or similar), and a subtle animated logo mark. Use Google Fonts (Inter or Poppins) for all typography.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/Hero.tsx",
+          "frontend/src/App.tsx",
+          "frontend/index.html"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/Hero.tsx",
+          "frontend/src/App.tsx",
+          "frontend/index.html"
+        ]
+      },
+      {
+        "id": "REQ-10",
+        "summary": "Implement the Image Compressor tool (client-side). Use the Canvas API to re-encode an uploaded JPG or PNG at a user-selected quality level (e.g., a slider from 10–100%). Display the original file size and the compressed file size before download. Provide the compressed image for download.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/tools/ImageCompressor.tsx",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/tools/ImageCompressor.tsx",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-11",
+        "summary": "Implement the Image Resizer tool (client-side). Use the Canvas API to resize an uploaded JPG or PNG to user-specified width and height dimensions. Provide an option to maintain aspect ratio. Display a preview of the resized image and allow download.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/tools/ImageResizer.tsx",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/tools/ImageResizer.tsx",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-12",
+        "summary": "Implement the Merge PDFs tool (client-side). Allow uploading multiple PDF files and reordering them (drag-to-reorder or up/down buttons). Use PDF.js to read pages from each PDF and jsPDF or pdf-lib (from CDN) to combine all pages into one merged PDF document available for download.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/tools/MergePdfs.tsx",
+          "frontend/index.html",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/tools/MergePdfs.tsx",
+          "frontend/index.html",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-13",
+        "summary": "Add a footer section below the tool grid with the app name 'ConvertHub', a brief description, and a note that all conversions are processed locally in the browser (privacy-first messaging).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/Footer.tsx",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/Footer.tsx",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-14",
+        "summary": "Generate a ConvertHub wordmark/logo image and a hero background image for the landing page.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/Hero.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/Hero.tsx"
+        ]
+      },
+      {
+        "id": "REQ-2",
+        "summary": "Implement a dark glassmorphism visual theme with an animated purple/blue gradient background. The background gradient should slowly and continuously shift colors. All cards and modals should use glass-effect styling (backdrop blur, semi-transparent backgrounds, subtle borders). Apply neon glow effects on active/focused elements. Include floating particles or a subtle ambient background animation.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/index.css",
+          "frontend/tailwind.config.js",
+          "frontend/src/components/FloatingParticles.tsx",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/index.css",
+          "frontend/tailwind.config.js",
+          "frontend/src/components/FloatingParticles.tsx",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-3",
+        "summary": "Implement a responsive tool grid layout displaying all 8 conversion tools as cards: PDF to Image, Image to PDF, Image to Word, PDF to Word, Word to PDF, Image Compressor, Image Resizer, and Merge PDFs. The grid should be 4 columns on desktop, 2 on tablet, and 1 on mobile. Each card must have a unique colorful icon with a gradient accent, a tool name, and a short description. Cards must have smooth hover animations (scale, glow, lift effect).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/ToolCard.tsx",
+          "frontend/src/components/ToolGrid.tsx",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/ToolCard.tsx",
+          "frontend/src/components/ToolGrid.tsx",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-4",
+        "summary": "Each tool card should open its conversion interface in a modal or dedicated expanded section. Each tool interface must include: a drag-and-drop file upload zone with animated dashed/glowing border, a file input fallback button, relevant conversion options (e.g., output format selector for PDF to Image), a 'Convert' action button, a gradient-filled progress bar shown during processing, and a download button that triggers file download after conversion completes. Show toast notifications for success and error states.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/ConversionModal.tsx",
+          "frontend/src/components/FileUploadZone.tsx",
+          "frontend/src/components/ConversionProgress.tsx",
+          "frontend/src/components/DownloadButton.tsx",
+          "frontend/src/hooks/useToast.ts",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/ConversionModal.tsx",
+          "frontend/src/components/FileUploadZone.tsx",
+          "frontend/src/components/ConversionProgress.tsx",
+          "frontend/src/components/DownloadButton.tsx",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-5",
+        "summary": "Implement the PDF to Image conversion tool (client-side). Use PDF.js from CDN to render each page of an uploaded PDF and export pages as JPG or PNG images. Allow the user to select output format (JPG or PNG). Provide a download for all converted images (individually or as a zip).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/tools/PdfToImage.tsx",
+          "frontend/index.html",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/tools/PdfToImage.tsx",
+          "frontend/index.html",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-6",
+        "summary": "Implement the Image to PDF conversion tool (client-side). Use jsPDF from CDN to combine one or more uploaded JPG/PNG images into a single PDF document. Allow uploading multiple images and define their order before conversion.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/tools/ImageToPdf.tsx",
+          "frontend/index.html",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/tools/ImageToPdf.tsx",
+          "frontend/index.html",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-7",
+        "summary": "Implement the Image to Word (DOCX) conversion tool (client-side). Embed the uploaded image(s) into a DOCX file using a client-side library (e.g., docx.js or similar). Provide the DOCX file for download.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/tools/ImageToWord.tsx",
+          "frontend/index.html",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/tools/ImageToWord.tsx",
+          "frontend/index.html",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-8",
+        "summary": "Implement the PDF to Word (DOCX) conversion tool (client-side). Use PDF.js to extract text content from each page of the uploaded PDF, then generate a DOCX file with the extracted text using a client-side DOCX library. Provide the DOCX for download.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/tools/PdfToWord.tsx",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/tools/PdfToWord.tsx",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-9",
+        "summary": "Implement the Word to PDF conversion tool (client-side). Use Mammoth.js from CDN to read the uploaded DOCX file and extract its HTML content, then use jsPDF to render that content into a downloadable PDF.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/tools/WordToPdf.tsx",
+          "frontend/index.html",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/tools/WordToPdf.tsx",
+          "frontend/index.html",
+          "frontend/src/App.tsx"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "backend/main.mo",
+    "build-request.json",
+    "build-template/Dockerfile",
+    "build-template/LICENSE",
+    "build-template/README.md",
+    "build-template/deploy.sh",
+    "build-template/icp.yaml",
+    "build-template/package.json",
+    "build-template/pnpm-lock.yaml",
+    "build-template/pnpm-workspace.yaml",
+    "build-template/scripts/prune-unused-images.js",
+    "build-template/scripts/resize-images.js",
+    "build-template/src/backend/canister.yaml",
+    "build-template/src/backend/system-idl/aaaaa-aa.did",
+    "build-template/src/frontend/canister.yaml",
+    "build-template/src/frontend/components.json",
+    "build-template/src/frontend/env.json",
+    "build-template/src/frontend/eslint-rules/no-bigint-in-query-keys.js",
+    "build-template/src/frontend/eslint-rules/require-internet-identity-provider.js",
+    "build-template/src/frontend/eslint.config.js",
+    "build-template/src/frontend/package.json",
+    "build-template/src/frontend/postcss.config.js",
+    "build-template/src/frontend/src/components/ui/accordion.tsx",
+    "build-template/src/frontend/src/components/ui/alert-dialog.tsx",
+    "build-template/src/frontend/src/components/ui/alert.tsx",
+    "build-template/src/frontend/src/components/ui/aspect-ratio.tsx",
+    "build-template/src/frontend/src/components/ui/avatar.tsx",
+    "build-template/src/frontend/src/components/ui/badge.tsx",
+    "build-template/src/frontend/src/components/ui/breadcrumb.tsx",
+    "build-template/src/frontend/src/components/ui/button.tsx",
+    "build-template/src/frontend/src/components/ui/calendar.tsx",
+    "build-template/src/frontend/src/components/ui/card.tsx",
+    "build-template/src/frontend/src/components/ui/carousel.tsx",
+    "build-template/src/frontend/src/components/ui/chart.tsx",
+    "build-template/src/frontend/src/components/ui/checkbox.tsx",
+    "build-template/src/frontend/src/components/ui/collapsible.tsx",
+    "build-template/src/frontend/src/components/ui/command.tsx",
+    "build-template/src/frontend/src/components/ui/context-menu.tsx",
+    "build-template/src/frontend/src/components/ui/dialog.tsx",
+    "build-template/src/frontend/src/components/ui/drawer.tsx",
+    "build-template/src/frontend/src/components/ui/dropdown-menu.tsx",
+    "build-template/src/frontend/src/components/ui/form.tsx",
+    "build-template/src/frontend/src/components/ui/hover-card.tsx",
+    "build-template/src/frontend/src/components/ui/input-otp.tsx",
+    "build-template/src/frontend/src/components/ui/input.tsx",
+    "build-template/src/frontend/src/components/ui/label.tsx",
+    "build-template/src/frontend/src/components/ui/menubar.tsx",
+    "build-template/src/frontend/src/components/ui/navigation-menu.tsx",
+    "build-template/src/frontend/src/components/ui/pagination.tsx",
+    "build-template/src/frontend/src/components/ui/popover.tsx",
+    "build-template/src/frontend/src/components/ui/progress.tsx",
+    "build-template/src/frontend/src/components/ui/radio-group.tsx",
+    "build-template/src/frontend/src/components/ui/resizable.tsx",
+    "build-template/src/frontend/src/components/ui/scroll-area.tsx",
+    "build-template/src/frontend/src/components/ui/select.tsx",
+    "build-template/src/frontend/src/components/ui/separator.tsx",
+    "build-template/src/frontend/src/components/ui/sheet.tsx",
+    "build-template/src/frontend/src/components/ui/sidebar.tsx",
+    "build-template/src/frontend/src/components/ui/skeleton.tsx",
+    "build-template/src/frontend/src/components/ui/slider.tsx",
+    "build-template/src/frontend/src/components/ui/sonner.tsx",
+    "build-template/src/frontend/src/components/ui/switch.tsx",
+    "build-template/src/frontend/src/components/ui/table.tsx",
+    "build-template/src/frontend/src/components/ui/tabs.tsx",
+    "build-template/src/frontend/src/components/ui/textarea.tsx",
+    "build-template/src/frontend/src/components/ui/toggle-group.tsx",
+    "build-template/src/frontend/src/components/ui/toggle.tsx",
+    "build-template/src/frontend/src/components/ui/tooltip.tsx",
+    "build-template/src/frontend/src/hooks/use-mobile.tsx",
+    "build-template/src/frontend/src/lib/utils.ts",
+    "build-template/src/frontend/tsconfig.json",
+    "build-template/src/frontend/vite.config.js",
+    "build-template/tsconfig.json",
+    "caffeine.lock.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/public/assets/generated/converthub-logo.dim_256x256.png",
+    "frontend/public/assets/generated/hero-bg.dim_1920x600.png",
+    "frontend/src/App.tsx",
+    "frontend/src/backend.d.ts",
+    "frontend/src/backend.ts",
+    "frontend/src/components/ConversionModal.tsx",
+    "frontend/src/components/ConversionProgress.tsx",
+    "frontend/src/components/DownloadButton.tsx",
+    "frontend/src/components/FileUploadZone.tsx",
+    "frontend/src/components/FloatingParticles.tsx",
+    "frontend/src/components/Footer.tsx",
+    "frontend/src/components/Hero.tsx",
+    "frontend/src/components/ToolCard.tsx",
+    "frontend/src/components/ToolGrid.tsx",
+    "frontend/src/config.ts",
+    "frontend/src/declarations/backend.did.d.ts",
+    "frontend/src/declarations/backend.did.js",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/src/tools/ImageCompressor.tsx",
+    "frontend/src/tools/ImageResizer.tsx",
+    "frontend/src/tools/ImageToPdf.tsx",
+    "frontend/src/tools/ImageToWord.tsx",
+    "frontend/src/tools/MergePdfs.tsx",
+    "frontend/src/tools/PdfToImage.tsx",
+    "frontend/src/tools/PdfToWord.tsx",
+    "frontend/src/tools/WordToPdf.tsx",
+    "frontend/src/ui-summary.json",
+    "frontend/src/utils/StorageClient.ts",
+    "frontend/tailwind.config.js",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

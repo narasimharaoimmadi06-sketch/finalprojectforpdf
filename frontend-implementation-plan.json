@@ -1,0 +1,382 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "ConvertHub - All-in-One File Conversion Toolkit Frontend Implementation",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Create hero section with ConvertHub branding, tagline, animated logo, and Google Fonts typography",
+      "acceptanceCriteria": [
+        "App name 'ConvertHub' is prominently displayed in the hero section",
+        "A descriptive tagline is visible below the app name",
+        "Google Fonts (Inter or Poppins) is loaded and applied to all text",
+        "Hero section has an animated logo or icon element"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/Hero.tsx",
+          "operation": "create",
+          "description": "Create Hero component with ConvertHub branding, tagline ('All-in-One File Conversion Toolkit'), and animated logo mark. Reference the generated logo image at frontend/public/assets/generated/converthub-logo.dim_256x256.png and hero background at frontend/public/assets/generated/hero-bg.dim_1920x600.png. Apply Google Fonts (Inter or Poppins) with keyframe animations for logo pulse/glow effect."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Import and render the Hero component at the top of the main app layout, above the tool grid section."
+        },
+        {
+          "path": "frontend/index.html",
+          "operation": "modify",
+          "description": "Add Google Fonts link tag in the <head> to load Inter or Poppins font family for use throughout the application."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Implement dark glassmorphism theme with animated purple/blue gradient background, glass-effect cards, neon glow, and floating particles",
+      "acceptanceCriteria": [
+        "Background displays a dark purple/blue gradient that animates smoothly in a continuous loop",
+        "Tool cards have frosted-glass appearance (backdrop-filter blur, semi-transparent fill, visible border)",
+        "Focused/active UI elements display a neon glow effect",
+        "Floating particles or ambient animation is visible in the background without obscuring content",
+        "Theme is visually consistent across all sections"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Add global styles for dark glassmorphism theme including animated purple/blue gradient background with CSS keyframes for continuous color shifting. Define utility classes for glass-effect (backdrop-filter: blur, semi-transparent backgrounds, subtle borders) and neon glow effects (box-shadow with purple/cyan colors). Apply dark base colors to body and root elements."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Extend Tailwind theme with custom purple/blue gradient colors, glassmorphism utilities (backdrop-blur variants), and neon glow shadow configurations to support the design system throughout the app."
+        },
+        {
+          "path": "frontend/src/components/FloatingParticles.tsx",
+          "operation": "create",
+          "description": "Create FloatingParticles component with canvas-based or CSS-animated particle system displaying subtle floating shapes/dots in purple/blue tones. Particles should move slowly across the viewport without obscuring content. Use absolute positioning and low z-index."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Add FloatingParticles component as a background layer in the main app container, ensuring it renders behind all content with proper z-index layering."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Implement responsive 8-tool grid layout with unique gradient icons, tool names, descriptions, and smooth hover animations",
+      "acceptanceCriteria": [
+        "All 8 tool cards are rendered in the grid",
+        "Grid is 4 columns on desktop (≥1024px), 2 on tablet (≥640px), 1 on mobile",
+        "Each card has a distinct icon with a gradient color accent unique to that tool",
+        "Hovering a card triggers a smooth lift/scale/glow animation",
+        "Tool name and description are clearly legible on each card"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/ToolCard.tsx",
+          "operation": "create",
+          "description": "Create ToolCard component accepting props for tool name, description, icon/gradient colors, and onClick handler. Apply glassmorphism card styling with backdrop-blur, semi-transparent background, and subtle border. Implement smooth hover animations (scale, translateY lift, neon glow) using CSS transitions or Framer Motion."
+        },
+        {
+          "path": "frontend/src/components/ToolGrid.tsx",
+          "operation": "create",
+          "description": "Create ToolGrid component rendering 8 ToolCard instances in a responsive CSS Grid layout: 4 columns on desktop (lg:grid-cols-4), 2 on tablet (sm:grid-cols-2), 1 on mobile. Define tool data array with all 8 tools: PDF to Image, Image to PDF, Image to Word, PDF to Word, Word to PDF, Image Compressor, Image Resizer, Merge PDFs. Assign unique gradient accent colors and icon identifiers to each tool. Pass click handlers to open respective tool modals."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Import and render ToolGrid component below the Hero section in the main app layout."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Create conversion interface modal/section for each tool with drag-and-drop upload, file input fallback, conversion options, progress bar, download button, and toast notifications",
+      "acceptanceCriteria": [
+        "Clicking a tool card opens a modal or expands a dedicated section for that tool",
+        "Each tool interface has a drag-and-drop upload zone with an animated border effect",
+        "A file input button is available as fallback to drag-and-drop",
+        "A gradient-filled progress bar is shown during conversion processing",
+        "After successful conversion, a download button appears and triggers file download",
+        "Toast notifications appear for both success and error outcomes",
+        "Modals can be dismissed/closed"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/ConversionModal.tsx",
+          "operation": "create",
+          "description": "Create ConversionModal component using shadcn/ui Dialog component with glassmorphism styling. Accept props for tool name, children (tool-specific interface), open state, and onClose handler. Apply backdrop-blur overlay and glass-effect modal container. Include close button with neon glow on hover."
+        },
+        {
+          "path": "frontend/src/components/FileUploadZone.tsx",
+          "operation": "create",
+          "description": "Create FileUploadZone component with drag-and-drop functionality using onDragOver, onDragLeave, onDrop events. Display animated dashed border (keyframe animation for dash-offset or glow pulse) on drag-active state. Include hidden file input with click trigger button as fallback. Accept file type restrictions and onFileSelect callback prop."
+        },
+        {
+          "path": "frontend/src/components/ConversionProgress.tsx",
+          "operation": "create",
+          "description": "Create ConversionProgress component displaying a gradient-filled progress bar using shadcn/ui Progress component. Apply purple-to-cyan gradient fill and smooth animation. Accept progress percentage prop (0-100). Show processing status text."
+        },
+        {
+          "path": "frontend/src/components/DownloadButton.tsx",
+          "operation": "create",
+          "description": "Create DownloadButton component that triggers file download using URL.createObjectURL and programmatic anchor click. Accept file blob, filename, and enabled state props. Apply glassmorphism button styling with neon glow on hover. Include download icon."
+        },
+        {
+          "path": "frontend/src/hooks/useToast.ts",
+          "operation": "create",
+          "description": "Create useToast hook wrapping shadcn/ui toast functionality for showing success and error notifications. Export methods for toast.success(message) and toast.error(message) with appropriate styling and auto-dismiss timing."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Add state management for active tool modal (which tool is open, null when closed). Pass modal open/close handlers to ToolGrid component to wire tool card clicks to modal state. Render ConversionModal conditionally based on active tool state."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Implement PDF to Image conversion tool using PDF.js to render PDF pages as JPG or PNG images client-side",
+      "acceptanceCriteria": [
+        "User can upload a PDF file",
+        "User can select JPG or PNG as output format",
+        "Each PDF page is rendered and exported as an image using PDF.js",
+        "Converted images are downloadable",
+        "Processing is entirely client-side"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/tools/PdfToImage.tsx",
+          "operation": "create",
+          "description": "Create PdfToImage tool component using FileUploadZone for PDF upload (accept='.pdf'), output format selector (radio buttons for JPG/PNG), ConversionProgress during processing, and DownloadButton for results. Use PDF.js from CDN (loaded via script tag or dynamic import) to parse uploaded PDF, render each page to canvas, export canvas as image blob in selected format. Generate downloadable zip of all page images or individual downloads. Show toast notifications on success/error. Verify PDF.js usage instructions before implementing."
+        },
+        {
+          "path": "frontend/index.html",
+          "operation": "modify",
+          "description": "Add PDF.js library script tag in <head> pointing to CDN URL (e.g., Mozilla CDN) to make pdfjs-dist available globally for PDF rendering."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Import PdfToImage component and render it inside ConversionModal when 'PDF to Image' tool is active. Pass modal close handler to tool component."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Implement Image to PDF conversion tool using jsPDF to combine multiple images into a single PDF client-side",
+      "acceptanceCriteria": [
+        "User can upload one or more JPG/PNG files",
+        "All uploaded images are combined into a single downloadable PDF",
+        "Processing is entirely client-side using jsPDF"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/tools/ImageToPdf.tsx",
+          "operation": "create",
+          "description": "Create ImageToPdf tool component using FileUploadZone for multiple image uploads (accept='.jpg,.jpeg,.png', multiple=true), image preview list showing uploaded files with reorder controls (optional), ConversionProgress during PDF generation, and DownloadButton for output PDF. Use jsPDF from CDN to create new PDF document, add each uploaded image as a page, and generate downloadable blob. Show toast notifications on success/error. Verify jsPDF usage instructions before implementing."
+        },
+        {
+          "path": "frontend/index.html",
+          "operation": "modify",
+          "description": "Add jsPDF library script tag in <head> pointing to CDN URL to make jsPDF available globally for PDF creation."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Import ImageToPdf component and render it inside ConversionModal when 'Image to PDF' tool is active. Pass modal close handler to tool component."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Implement Image to Word (DOCX) conversion tool using client-side library to embed images in DOCX file",
+      "acceptanceCriteria": [
+        "User can upload a JPG or PNG image",
+        "A DOCX file is generated containing the image",
+        "The DOCX file is downloadable",
+        "Processing is entirely client-side"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/tools/ImageToWord.tsx",
+          "operation": "create",
+          "description": "Create ImageToWord tool component using FileUploadZone for image upload (accept='.jpg,.jpeg,.png'), ConversionProgress during DOCX generation, and DownloadButton for output DOCX. Use docx.js or similar client-side DOCX library from CDN/npm to create document with embedded image and generate downloadable blob. Show toast notifications on success/error. Verify the DOCX library's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/index.html",
+          "operation": "modify",
+          "description": "Add docx.js or equivalent DOCX generation library script tag in <head> pointing to CDN URL if using CDN approach, or ensure library is bundled via npm."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Import ImageToWord component and render it inside ConversionModal when 'Image to Word' tool is active. Pass modal close handler to tool component."
+        }
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "summary": "Implement PDF to Word (DOCX) conversion tool using PDF.js to extract text and client-side library to generate DOCX",
+      "acceptanceCriteria": [
+        "User can upload a PDF file",
+        "Text is extracted from the PDF using PDF.js",
+        "A DOCX file is generated from the extracted text",
+        "The DOCX file is downloadable",
+        "Processing is entirely client-side"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/tools/PdfToWord.tsx",
+          "operation": "create",
+          "description": "Create PdfToWord tool component using FileUploadZone for PDF upload (accept='.pdf'), ConversionProgress during processing, and DownloadButton for output DOCX. Use PDF.js to parse PDF and extract text content from each page. Use docx.js or similar library to create DOCX document with extracted text and generate downloadable blob. Show toast notifications on success/error. Verify PDF.js and DOCX library usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Import PdfToWord component and render it inside ConversionModal when 'PDF to Word' tool is active. Pass modal close handler to tool component."
+        }
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "summary": "Implement Word to PDF conversion tool using Mammoth.js to parse DOCX and jsPDF to generate PDF",
+      "acceptanceCriteria": [
+        "User can upload a DOCX file",
+        "The DOCX content is parsed using Mammoth.js",
+        "A PDF is generated from the content using jsPDF",
+        "The PDF is downloadable",
+        "Processing is entirely client-side"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/tools/WordToPdf.tsx",
+          "operation": "create",
+          "description": "Create WordToPdf tool component using FileUploadZone for DOCX upload (accept='.docx'), ConversionProgress during processing, and DownloadButton for output PDF. Use Mammoth.js from CDN to parse uploaded DOCX and extract HTML content. Render HTML to temporary container, measure dimensions, then use jsPDF to generate PDF from the rendered content. Generate downloadable PDF blob. Show toast notifications on success/error. Verify Mammoth.js and jsPDF usage instructions before implementing."
+        },
+        {
+          "path": "frontend/index.html",
+          "operation": "modify",
+          "description": "Add Mammoth.js library script tag in <head> pointing to CDN URL to make Mammoth available globally for DOCX parsing."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Import WordToPdf component and render it inside ConversionModal when 'Word to PDF' tool is active. Pass modal close handler to tool component."
+        }
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "summary": "Implement Image Compressor tool using Canvas API to re-encode images at user-selected quality level",
+      "acceptanceCriteria": [
+        "User can upload a JPG or PNG image",
+        "A quality slider or input allows the user to choose compression level",
+        "Original and estimated compressed file sizes are displayed",
+        "Compressed image is downloadable",
+        "Processing uses the Canvas API client-side"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/tools/ImageCompressor.tsx",
+          "operation": "create",
+          "description": "Create ImageCompressor tool component using FileUploadZone for image upload (accept='.jpg,.jpeg,.png'), quality slider (range 10-100) using shadcn/ui Slider component, file size comparison display (original vs compressed), ConversionProgress during processing, and DownloadButton for compressed image. Use Canvas API to load image, draw to canvas, and export using toBlob with quality parameter. Calculate and display file sizes. Show toast notifications on success/error."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Import ImageCompressor component and render it inside ConversionModal when 'Image Compressor' tool is active. Pass modal close handler to tool component."
+        }
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "summary": "Implement Image Resizer tool using Canvas API to resize images to custom dimensions with aspect ratio option",
+      "acceptanceCriteria": [
+        "User can upload a JPG or PNG image",
+        "Width and height inputs accept custom pixel values",
+        "An option to lock/maintain aspect ratio is available",
+        "A preview or confirmation of the resized dimensions is shown",
+        "Resized image is downloadable",
+        "Processing uses the Canvas API client-side"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/tools/ImageResizer.tsx",
+          "operation": "create",
+          "description": "Create ImageResizer tool component using FileUploadZone for image upload (accept='.jpg,.jpeg,.png'), width and height number inputs using shadcn/ui Input components, aspect ratio lock checkbox, dimension preview/confirmation text, ConversionProgress during processing, and DownloadButton for resized image. Use Canvas API to load image, draw at target dimensions, and export as blob. Implement aspect ratio calculation when lock is enabled. Show toast notifications on success/error."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Import ImageResizer component and render it inside ConversionModal when 'Image Resizer' tool is active. Pass modal close handler to tool component."
+        }
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "summary": "Implement Merge PDFs tool using PDF.js to read pages and pdf-lib or jsPDF to combine PDFs with reordering capability",
+      "acceptanceCriteria": [
+        "User can upload two or more PDF files",
+        "Uploaded PDFs are listed with the ability to reorder them",
+        "All PDFs are merged into a single downloadable PDF",
+        "Processing is entirely client-side"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/tools/MergePdfs.tsx",
+          "operation": "create",
+          "description": "Create MergePdfs tool component using FileUploadZone for multiple PDF uploads (accept='.pdf', multiple=true), PDF file list with drag-to-reorder or up/down buttons for ordering, ConversionProgress during merge processing, and DownloadButton for merged PDF. Use PDF.js to read pages from each uploaded PDF, use pdf-lib or jsPDF from CDN to combine all pages in order into single PDF document, and generate downloadable blob. Show toast notifications on success/error. Verify pdf-lib or jsPDF usage instructions before implementing."
+        },
+        {
+          "path": "frontend/index.html",
+          "operation": "modify",
+          "description": "Add pdf-lib library script tag in <head> pointing to CDN URL to make PDFLib available globally for PDF merging operations."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Import MergePdfs component and render it inside ConversionModal when 'Merge PDFs' tool is active. Pass modal close handler to tool component."
+        }
+      ]
+    },
+    {
+      "id": "REQ-13",
+      "summary": "Add footer section with app name, description, and privacy-first messaging about local processing",
+      "acceptanceCriteria": [
+        "Footer is visible at the bottom of the page",
+        "Footer displays the app name and a short description",
+        "Footer mentions that files are processed locally / never uploaded to a server"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/Footer.tsx",
+          "operation": "create",
+          "description": "Create Footer component displaying 'ConvertHub' app name, brief description, and privacy-first messaging stating that all conversions are processed locally in the browser and no files are uploaded to servers. Apply glassmorphism styling consistent with theme. Include subtle border-top separator."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Import and render Footer component at the bottom of the main app layout, below the ToolGrid section."
+        }
+      ]
+    },
+    {
+      "id": "REQ-14",
+      "summary": "Wire generated logo and hero background images into the hero section as static assets",
+      "acceptanceCriteria": [
+        "A logo/wordmark image is rendered in the hero section",
+        "A decorative hero background or banner image is used in the hero area"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/Hero.tsx",
+          "operation": "modify",
+          "description": "Update Hero component to reference the generated logo image at frontend/public/assets/generated/converthub-logo.dim_256x256.png as the main logo/wordmark using an <img> tag or background-image. Apply the hero background image at frontend/public/assets/generated/hero-bg.dim_1920x600.png as a background layer (CSS background-image or <img> with absolute positioning). Ensure images are optimally positioned and scaled for responsive display."
+        }
+      ]
+    }
+  ]
+}

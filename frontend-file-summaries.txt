@@ -1,0 +1,6 @@
+{
+  "frontend/src/tools/ImageToWord.tsx": "Tool component that converts an uploaded image (JPG/PNG/WebP) into a downloadable DOCX file by building a ZIP-based DOCX structure from scratch with embedded image XML. Fixed the Blob constructor type error by extracting a plain ArrayBuffer from the Uint8Array before passing it to Blob.",
+  "frontend/src/tools/ImageCompressor.tsx": "Tool component that compresses an uploaded image using the Canvas API at a user-selected quality level (10–100%), displays original vs compressed file sizes, and provides a download button for the result.",
+  "frontend/src/tools/ImageResizer.tsx": "Tool component that resizes an uploaded image to custom pixel dimensions using the Canvas API, with an aspect ratio lock toggle, live dimension preview, and download of the resized result.",
+  "frontend/src/tools/MergePdfs.tsx": "Tool component that merges multiple uploaded PDF files into a single PDF using the pdf-lib CDN library, with drag-reorder support via up/down buttons and a download button for the merged output."
+}
